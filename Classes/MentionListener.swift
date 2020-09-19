@@ -336,8 +336,10 @@ extension MentionListener /* Private */ {
 extension MentionListener: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange,
                          replacementText text: String) -> Bool {
-        _ = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
-
+        let delegateResult = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
+        
+        guard (delegateResult ?? true) else { return }
+        
         textView.typingAttributes = defaultTextAttributes.dictionary
 
         var shouldChangeText = true
