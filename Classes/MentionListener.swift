@@ -338,7 +338,7 @@ extension MentionListener: UITextViewDelegate {
                          replacementText text: String) -> Bool {
         let delegateResult = delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text)
         
-        guard (delegateResult ?? true) else { return }
+        guard (delegateResult ?? true) else { return false }
         
         textView.typingAttributes = defaultTextAttributes.dictionary
 
